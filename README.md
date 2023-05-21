@@ -1,0 +1,1 @@
+# nextjs-toys-store-management
