@@ -1,20 +1,24 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import CategorySelectOptions from "./CategorySelectOptions";
+import ToysSelectOptions from "./ToysSelectOptions";
 
-export default function AddToysModal({ toggle, setToggle, handleSubmit }) {
+export default function AddTransactionModal({
+  toggle,
+  setToggle,
+  handleSubmit,
+}) {
   const [payload, setPayload] = useState({
-    kodeMainan: "",
-    nama: "",
-    qty: 0,
-    harga: 0,
-    kategoriMainan: {
+    noTransaksi: "",
+    tanggal: "",
+    customerVendor: "",
+    mainan: {
       id: null,
     },
   });
 
   function closeModal() {
-    handleSubmit(payload);
+    // handleSubmit(payload);
     setToggle(false);
   }
 
@@ -50,20 +54,20 @@ export default function AddToysModal({ toggle, setToggle, handleSubmit }) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Tambah Mainan
+                    Tambah Transaksi
                   </Dialog.Title>
                   <div className="mt-2">
                     <form>
                       <div class="grid gap-6 mb-6">
                         <div>
                           <label class="block mb-2 text-sm font-medium text-gray-900 ">
-                            Kode Mainan
+                            Kode Transaksi
                           </label>
                           <input
                             onChange={(ev) => {
                               setPayload({
                                 ...payload,
-                                kodeMainan: ev.target.value,
+                                noTransaksi: ev.target.value,
                               });
                             }}
                             type="text"
@@ -71,47 +75,36 @@ export default function AddToysModal({ toggle, setToggle, handleSubmit }) {
                             required
                           />
                           <label class="block mb-2 text-sm font-medium text-gray-900 ">
-                            Nama
+                            Tanggal
                           </label>
                           <input
                             onChange={(ev) => {
-                              setPayload({ ...payload, nama: ev.target.value });
+                              setPayload({
+                                ...payload,
+                                tanggal: ev.target.value,
+                              });
                             }}
-                            type="text"
+                            type="date"
                             id="first_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             required
                           />
-                          <CategorySelectOptions
+                          <ToysSelectOptions
                             callback={(id) => {
                               setPayload({
                                 ...payload,
-                                kategoriMainan: { id: id },
+                                mainan: { id: id },
                               });
                             }}
                           />
                           <label class="block mb-2 text-sm font-medium text-gray-900 ">
-                            Qty
+                            Customer Vendor
                           </label>
                           <input
                             onChange={(ev) => {
                               setPayload({
                                 ...payload,
-                                qty: Number(ev.target.value),
-                              });
-                            }}
-                            type="number"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required
-                          />
-                          <label class="block mb-2 text-sm font-medium text-gray-900 ">
-                            Harga
-                          </label>
-                          <input
-                            onChange={(ev) => {
-                              setPayload({
-                                ...payload,
-                                harga: Number(ev.target.value),
+                                customerVendor: Number(ev.target.value),
                               });
                             }}
                             type="text"
