@@ -18,7 +18,7 @@ const CategoryTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((e) => (
+          {data?.map((e) => (
             <tr
               key={e.id}
               class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"

@@ -1,3 +1,4 @@
+"use client";
 export default function Home() {
   return (
     <div className="flex h-72 px-24 items-center">
